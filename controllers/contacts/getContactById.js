@@ -6,7 +6,7 @@ const getContactById = async (req, res) => {
   const { contactId } = req.params;
   const result = await Contact.findById(contactId, "_id name email phone favorite");
   if (!result) {
-    throw new NotFound(404, `Contact with id=${contactId} not found`);
+    throw new NotFound( `Contact with id=${contactId} not found`);
   }
   sendSuccessRes(res, { result });
 };

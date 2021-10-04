@@ -7,7 +7,7 @@ const updateStatusContact = async (req, res) => {
   const { favorite } = req.body;
   const result = await Contact.findByIdAndUpdate(contactId, { favorite }, { new: true} );
   if (!result) {
-    throw new NotFound(404, "Not found");
+    throw new NotFound("Not found");
   }
   sendSuccessRes(res, { result });
 };
