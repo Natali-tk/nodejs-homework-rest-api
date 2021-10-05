@@ -4,9 +4,10 @@ const { Contact } = require("../../models");
 
 const deleteContact = async (req, res) => {
   const { contactId } = req.params;
-  const result = await Contact.findByIdAndDelete(contactId);
+  const userId = req.user.id;
+  const result = await Contact.findByIdAndDelete({ _id: contactId, owner:userId });
   if (!result) {
-    throw new NotFound(404, `Contact with id=${contactId} not found`);
+    throw new NotFound( `Contact with id=${contactId} not found`);
   }
   sendSuccessRes(res, { message: "Success delete" });
 };
